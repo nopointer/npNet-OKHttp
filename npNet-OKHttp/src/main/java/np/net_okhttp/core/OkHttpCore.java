@@ -11,6 +11,7 @@ import javax.net.ssl.SSLSession;
 
 import np.net_okhttp.cfg.NetCfgHelper;
 import np.net_okhttp.core.safe.SslContextFactory;
+import np.net_okhttp.log.CYNetLog;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -52,7 +53,7 @@ public class OkHttpCore {
      *
      * @param url url
      */
-    public static Response getRequest(String url) throws IOException {
+    public static Response syncGetRequest(String url) throws IOException {
         return createClient().newCall(packRequestData(url, null)).execute();
     }
 
@@ -61,8 +62,8 @@ public class OkHttpCore {
      *
      * @param url url
      */
-    public static void getRequestSync(String url, Callback callback) {
-        createClient().newCall(packRequestData(url, null)).enqueue(callback);
+    public static void asyncGetRequest(String url, NetReqAddedData addedData, Callback callback) {
+        createClient(addedData).newCall(packRequestData(url, null, addedData)).enqueue(callback);
     }
 //
 //    public static void getRequestSync(String url, Callback callback, Map<String, String> headers) {
@@ -113,7 +114,8 @@ public class OkHttpCore {
         if (formBody != null) {
             builder.post(formBody);
         }
-        try {
+        CYNetLog.log("addedData : " + addedData);
+        if (addedData != null) {
             Map<String, Object> headers = addedData.headers;
             if (headers != null && headers.size() > 0) {
                 Iterator it = headers.keySet().iterator();
@@ -123,11 +125,7 @@ public class OkHttpCore {
                     builder.addHeader(key, value.toString());
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
-
         return builder.build();
     }
 

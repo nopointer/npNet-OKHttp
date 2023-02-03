@@ -20,4 +20,13 @@ public class NetReqAddedData implements Serializable {
     public NetReqAddedData(int timeOutBySeconds) {
         this.timeOutBySeconds = timeOutBySeconds;
     }
+
+
+    @Override
+    public String toString() {
+        return "NetReqAddedData{" +
+                "headers=" + headers +
+                ", timeOutBySeconds=" + timeOutBySeconds +
+                '}';
+    }
 }

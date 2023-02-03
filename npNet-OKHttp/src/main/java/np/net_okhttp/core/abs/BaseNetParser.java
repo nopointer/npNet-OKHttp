@@ -10,17 +10,17 @@ import okhttp3.Response;
 /**
  * 抽象的数据解析
  */
-public abstract class IDataParser {
+public abstract class BaseNetParser {
 
     public abstract void parser(Call call, Response response) throws IOException;
 
     public abstract void onFailure(Call call, IOException e);
 
-    protected Callback getCallBack() {
+    public Callback getCallBack() {
         Callback callback = new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                IDataParser.this.onFailure(call, e);
+                BaseNetParser.this.onFailure(call, e);
             }
 
             @Override

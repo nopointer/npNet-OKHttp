@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import demo.nopointer.R;
+import demo.nopointer.npNet.net.NetManager;
+import demo.nopointer.npNet.net.reqPara.FeedbackPara;
 import demo.nopointer.npNet.net.reqPara.UserLogin;
 
 
@@ -16,43 +18,34 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UserLogin userLogin =new UserLogin();
-        userLogin.getParaMap();
-
-
-//        NetManager.getInstance().login();
+        UserLogin userLogin = new UserLogin();
+        userLogin.email = "123";
+        userLogin.password = "123";
+        userLogin.userName = "abac";
 
         findViewById(R.id.test_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                NetManager.getNetManager().userLogin(userLogin);
+
+            }
+        });
+
+        findViewById(R.id.btn_feedback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FeedbackPara feedbackPara =new FeedbackPara();
+//                feedbackPara.
+                NetManager.getNetManager().feedback(feedbackPara);
+            }
+        });
 
 
-
-//                NetManager.getInstance().receiveTrsnsTask(new YCNetCallback<YCResp>() {
-//                    @Override
-//                    public void onSuccess(NpCall<YCResp> call, YCResp response) {
-//                        NpNetLog.log("onSuccess" + response.toString());
-//                    }
-//
-//                    @Override
-//                    public void onSuccessWithJson(NpCall<YCResp> call, String jsonString) {
-//                        NpNetLog.log("拿到原始json数据："+jsonString);
-//                    }
-//
-//
-//                });
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
-//                NetManager.getInstance().login();
+        findViewById(R.id.btn_getDial).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NetManager.getNetManager().listDial();
             }
         });
 

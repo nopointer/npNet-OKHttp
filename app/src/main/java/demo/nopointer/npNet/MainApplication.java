@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 
+import np.net_okhttp.cfg.NetCfgHelper;
+
 
 public class MainApplication extends Application {
 
@@ -16,6 +18,8 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mainApplication = this;
+
+        NetCfgHelper.getInstance().addHost("testapp.xincore-tech.com");
     }
 
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.SocketTimeoutException;
 
-import np.net_okhttp.core.abs.IDataParser;
+import np.net_okhttp.core.abs.BaseNetParser;
 import np.net_okhttp.core.ycimpl.response.YCResponseListener;
 import np.net_okhttp.log.CYNetLog;
 import okhttp3.Call;
@@ -23,7 +23,7 @@ import okhttp3.Response;
  * Created by nopointer on 2018/8/4.
  */
 
-public class YCResponseParser extends IDataParser {
+public class YCResponseParser extends BaseNetParser {
 
     private Class<?>[] clazz;
     private YCResponseListener ycResponseListener = null;

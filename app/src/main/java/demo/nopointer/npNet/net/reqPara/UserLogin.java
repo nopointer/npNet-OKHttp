@@ -1,10 +1,15 @@
 package demo.nopointer.npNet.net.reqPara;
 
-import java.util.SortedMap;
-
 import demo.nopointer.npNet.net.para.BasePara;
 
 public class UserLogin extends BasePara {
-    public String accunt;
-    public String pwd;
+
+    public String code;
+    public int country;
+    public String email;
+    public String password;
+    public String phone;
+
+    public String userName;
+
 }
