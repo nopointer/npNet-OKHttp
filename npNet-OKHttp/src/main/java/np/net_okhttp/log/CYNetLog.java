@@ -97,9 +97,6 @@ public class CYNetLog {
     }
 
 
-
-
-
     public static File getBleLogFile() {
         initDirAndFileName();
         File appDir = new File(getLogParentDir(), getFilePath());
@@ -128,7 +125,7 @@ public class CYNetLog {
         }
     }
 
-    public static void logAndSave(String content) {
+    static void logAndSave(String content) {
         String oldContent = content;
         if (allowShowCallPathAndLineNumber) {
             StackTraceElement caller = getCallerStackTraceElement();

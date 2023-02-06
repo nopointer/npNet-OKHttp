@@ -1,27 +1,17 @@
-package np.net_okhttp.core.ycimpl.parser;
+package np.net_okhttp.core.base;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import np.net_okhttp.core.OkHttpCore;
-import np.net_okhttp.log.CYNetLog;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  * 原驰下载器
  */
-public class YCDownloader {
-    private YCDownloader() {
+public class BaseDownloader {
+    private BaseDownloader() {
     }
 
-    private static YCDownloader ycDownloader = new YCDownloader();
+    private static BaseDownloader ycDownloader = new BaseDownloader();
 
-    public static YCDownloader getYcDownloader() {
+    public static BaseDownloader getYcDownloader() {
         return ycDownloader;
     }
 

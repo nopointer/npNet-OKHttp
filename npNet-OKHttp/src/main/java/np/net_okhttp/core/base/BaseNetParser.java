@@ -1,4 +1,4 @@
-package np.net_okhttp.core.abs;
+package np.net_okhttp.core.base;
 
 
 import java.io.IOException;

@@ -19,17 +19,9 @@ public class NetWorker {
 
     NetImpl net = new NetImpl();
 
-    /**
-     * posy请求
-     * 尽量不要使用这个函数，此函数是问了兼容某些情况下（如请求对象因为某些原因不能继承BasePara的时候）
-     *
-     * @param url  url
-     * @param para
-     * @param <T>
-     */
-    public <T> void postRequestByJson(String url, T para) {
-        postRequestByJson(url, para, null);
-    }
+    public static final int JSON_PARSER_TYPE_CYNet = 0;
+    public static final int JSON_PARSER_TYPE_BSX = 1;
+    public static final int JSON_PARSER_TYPE_YC = 2;
 
     /**
      * posy请求
@@ -39,42 +31,107 @@ public class NetWorker {
      * @param para
      * @param <T>
      */
-    public <T> void postRequestByJson(String url, T para, NetReqAddedData addedData) {
-        net.postRequest(url, getJsonBody(para), addedData);
+    public <T> void postRequestByJson(String url, T para, NetListener netListener, Class<?>... clazz) {
+        postRequestByJson(url, para, null, netListener, JSON_PARSER_TYPE_CYNet, clazz);
     }
 
-    public void postRequestByJson(String url, BasePara basePara) {
-        postRequestByJson(url, basePara, null);
+    /**
+     * posy请求
+     * 尽量不要使用这个函数，此函数是问了兼容某些情况下（如请求对象因为某些原因不能继承BasePara的时候）
+     *
+     * @param url  url
+     * @param para
+     * @param <T>
+     */
+    public <T> void postRequestByJson(String url, T para, NetListener netListener, int parserType, Class<?>... clazz) {
+        postRequestByJson(url, para, null, netListener, parserType, clazz);
     }
 
-    public void postRequestByJson(String url, BasePara basePara, NetReqAddedData addedData) {
-        net.postRequest(url, getJsonBody(basePara), addedData);
+    /**
+     * posy请求
+     * 尽量不要使用这个函数，此函数是问了兼容某些情况下（如请求对象因为某些原因不能继承BasePara的时候）
+     *
+     * @param url  url
+     * @param para
+     * @param <T>
+     */
+    public <T> void postRequestByJson(String url, T para, NetReqAddedData addedData, NetListener netListener, int parserType, Class<?>... clazz) {
+        net.postRequest(url, getJsonBody(para), addedData, netListener, parserType, clazz);
     }
 
 
-    public void postRequestByJsonStr(String url, String jsonString) {
-        postRequestByJsonStr(url, jsonString, null);
+    /**
+     * @param url
+     * @param basePara
+     * @param netListener
+     * @param clazz
+     */
+    public void postRequestByJson(String url, BasePara basePara, NetListener netListener, Class<?>... clazz) {
+        postRequestByJson(url, basePara, null, netListener, clazz);
     }
 
-    public void postRequestByJsonStr(String url, String jsonString, NetReqAddedData addedData) {
-        net.postRequest(url, getJsonBody(jsonString), addedData);
+    /**
+     * @param url
+     * @param basePara
+     * @param netListener
+     * @param clazz
+     */
+    public void postRequestByJson(String url, BasePara basePara, NetListener netListener, int parserType, Class<?>... clazz) {
+        postRequestByJson(url, basePara, null, netListener, parserType, clazz);
     }
 
 
-    public void postRequestByForm(String url, BasePara basePara) {
-        postRequestByForm(url, basePara, null);
+    /**
+     * @param url
+     * @param basePara
+     * @param addedData
+     * @param netListener
+     * @param clazz
+     */
+    public void postRequestByJson(String url, BasePara basePara, NetReqAddedData addedData, NetListener netListener, Class<?>... clazz) {
+        postRequestByJson(url, basePara, addedData, netListener, 0, clazz);
     }
 
-    public void postRequestByForm(String url, BasePara basePara, NetReqAddedData addedData) {
-        net.postRequest(url, getFormBody(basePara), addedData);
+    /**
+     * @param url
+     * @param basePara
+     * @param addedData
+     * @param netListener
+     * @param parserType
+     * @param clazz
+     */
+    public void postRequestByJson(String url, BasePara basePara, NetReqAddedData addedData, NetListener netListener, int parserType, Class<?>... clazz) {
+        net.postRequest(url, getJsonBody(basePara), addedData, netListener, parserType, clazz);
     }
 
-    public void getRequest(String url) {
-        getRequest(url, null);
+
+    public void postRequestByJsonStr(String url, String jsonString, NetListener netListener, Class<?>... clazz) {
+        postRequestByJsonStr(url, jsonString, null, netListener, clazz);
     }
 
-    public void getRequest(String url, NetReqAddedData addedData) {
-        net.getRequest(url, addedData);
+    public void postRequestByJsonStr(String url, String jsonString, NetReqAddedData addedData, NetListener netListener, Class<?>... clazz) {
+        net.postRequest(url, getJsonBody(jsonString), addedData, netListener, clazz);
+    }
+
+
+    public void postRequestByForm(String url, BasePara basePara, NetListener netListener, Class<?>... clazz) {
+        postRequestByForm(url, basePara, null, netListener, clazz);
+    }
+
+    public void postRequestByForm(String url, BasePara basePara, NetReqAddedData addedData, NetListener netListener, Class<?>... clazz) {
+        net.postRequest(url, getFormBody(basePara), addedData, netListener, clazz);
+    }
+
+    public void getRequest(String url, NetListener netListener, Class<?>... clazz) {
+        getRequest(url, null, netListener, clazz);
+    }
+
+    public void getRequest(String url, NetReqAddedData addedData, NetListener netListener, Class<?>... clazz) {
+        getRequest(url, addedData, netListener, JSON_PARSER_TYPE_CYNet, clazz);
+    }
+
+    public void getRequest(String url, NetReqAddedData addedData, NetListener netListener, int parserType, Class<?>... clazz) {
+        net.getRequest(url, addedData, netListener, parserType, clazz);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////

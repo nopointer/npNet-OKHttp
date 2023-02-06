@@ -1,7 +1,5 @@
-package np.net_okhttp.core.abs;
+package np.net_okhttp.core.base;
 
-
-import java.util.Map;
 
 import np.net_okhttp.core.NetReqAddedData;
 import np.net_okhttp.core.OkHttpCore;
