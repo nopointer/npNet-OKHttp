@@ -12,8 +12,8 @@ public class NetCfg {
 //        return "http://szbsx.com:8081";
 
 //        return "http://mlb2.app168.com/index.php/Home";
-        return "http://dail.cynet2open.com:10090";
-//        return "http://192.168.5.63:8090";
+//        return "http://dail.cynet2open.com:10090";
+        return "http://192.168.5.63:8090";
     }
 
     public static class User {
